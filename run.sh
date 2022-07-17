@@ -1,2 +1,2 @@
 echo "salam"
-./updater/run.sh
+cd updater & ./run.sh
