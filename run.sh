@@ -1,2 +1,2 @@
-echo "salam"
-cd updater & ./run.sh
+#echo "salam"
+cd P2PNetwork; ./run.sh
