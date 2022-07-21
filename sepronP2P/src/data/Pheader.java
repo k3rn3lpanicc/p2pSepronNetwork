@@ -1,4 +1,4 @@
-package clientNode.data;
+package sepronP2P.src.data;
 public class Pheader {
     private long command; //8 bytes
     private int payloadSize; //4 bytes

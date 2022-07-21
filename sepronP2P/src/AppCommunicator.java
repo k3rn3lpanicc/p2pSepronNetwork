@@ -1,10 +1,12 @@
+package sepronP2P.src;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashSet;
 
 public class AppCommunicator implements Runnable{
-    private ServerSocket appSocket = new ServerSocket(8005);
+    private final ServerSocket appSocket = new ServerSocket(8005);
     public HashSet<ConnectedApps> connectedApps = new HashSet<>();
 
     public AppCommunicator() throws IOException {

@@ -1,4 +1,4 @@
-package clientNode.data.hasher;
+package sepronP2P.src.data.hasher;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

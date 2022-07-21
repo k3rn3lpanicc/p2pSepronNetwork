@@ -1,6 +1,7 @@
-package clientNode.data;
+package sepronP2P.src.data;
 
-import clientNode.data.hasher.SHA3;
+
+import sepronP2P.src.data.hasher.SHA3;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -14,7 +15,7 @@ public class Ppacket {
     Pheader pheader;
     private byte[] payload; //'payloadSize' bytes
     public Ppacket(long command, byte[] payload) {
-        this.pheader = new Pheader(command,payload.length,SHA3.getSHA3(payload).substring(0,9));
+        this.pheader = new Pheader(command,payload.length, SHA3.getSHA3(payload).substring(0,9));
         this.payload = payload;
     }
 
