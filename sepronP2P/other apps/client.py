@@ -11,4 +11,6 @@ s.connect(('127.0.0.1', port))
 #my_bytes = bytearray()
 #my_bytes.append(123)
 #my_bytes.append(125)
-s.send(b"hi")
+message = "hie"
+print (str(len(message)))
+s.send((str(len(message))+message).encode())
