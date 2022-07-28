@@ -1,4 +1,4 @@
-package sepronP2P.src;
+
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -7,7 +7,7 @@ import java.util.HashSet;
 
 public class Main {
     //todo : logger - gateway -
-    public static HashSet<Nodes> nodes = new HashSet<>();
+    public static HashSet<Nodes> nodes = new HashSet<Nodes>();
     public static Thread requestingThread = new Thread(new RequestingThread());
     public static final int MAX_CONNECTED_NODE=4;
     public static AppCommunicator appCommunicator;

@@ -1,4 +1,3 @@
-package sepronP2P.src;
 
 import java.io.IOException;
 import java.net.ServerSocket;

@@ -1,4 +1,3 @@
-package sepronP2P.src;
 
 import java.net.Socket;
 

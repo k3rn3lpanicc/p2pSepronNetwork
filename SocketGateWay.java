@@ -1,5 +1,3 @@
-package sepronP2P.src;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
