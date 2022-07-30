@@ -2,12 +2,13 @@
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Base64;
 
 
-public class Ppacket {
+public class Ppacket implements Serializable {
     Pheader pheader;
     private byte[] payload; //'payloadSize' bytes
     public Ppacket(long command, byte[] payload) {
