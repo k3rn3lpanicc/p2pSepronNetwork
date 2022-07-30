@@ -1,4 +1,6 @@
-public class Pheader {
+import java.io.Serializable;
+
+public class Pheader implements Serializable {
     private long command; //8 bytes
     private int payloadSize; //4 bytes
     private String checksum; //8 bytes
