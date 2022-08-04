@@ -34,11 +34,11 @@ public class Nodes implements Runnable {
 
     @Override
     public void run() {
-        try {
+      /*  try {
             sendMessage(new Ppacket(0,"hi"));
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
         while (nodeSocket.isConnected()) {
             try{
                 ObjectInputStream inputStream = new ObjectInputStream(nodeSocket.getInputStream());
