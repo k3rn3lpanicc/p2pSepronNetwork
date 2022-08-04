@@ -28,7 +28,7 @@ public class Nodes implements Runnable {
     public void praseMessage(Ppacket message) throws IOException {
         if (message.getCommand()==0){
             System.out.println(message.describe());
-            Main.sendMessageToOthers(message,this);
+            //Main.sendMessageToOthers(message,this);
         }
     }
 
