@@ -9,10 +9,16 @@ import java.util.Base64;
 
 
 public class Ppacket implements Serializable {
-    Pheader pheader;
+    //Pheader pheader;
+    private long command; //8 bytes
+    private int payloadSize; //4 bytes
+    private String checksum; //8 bytes
+
     private byte[] payload; //'payloadSize' bytes
     public Ppacket(long command, byte[] payload) {
-        this.pheader = new Pheader(command,payload.length, SHA3.getSHA3(payload).substring(0,9));
+        this.command=command;
+        this.payloadSize =payload.length;
+        this.checksum=SHA3.getSHA3(payload).substring(0,9);
         this.payload = payload;
     }
 
@@ -35,9 +41,15 @@ public class Ppacket implements Serializable {
     public byte[] toBytes(){
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         try {
-            byteArrayOutputStream.write(longtoBytes(pheader.getCommand()));
-            byteArrayOutputStream.write(pheader.getPayloadSize());
-            byteArrayOutputStream.write(pheader.getChecksum().getBytes());
+//            byteArrayOutputStream.write(longtoBytes(pheader.getCommand()));
+//            byteArrayOutputStream.write(pheader.getPayloadSize());
+//            byteArrayOutputStream.write(pheader.getChecksum().getBytes());
+
+            //jdid
+            byteArrayOutputStream.write(longtoBytes(command));
+            byteArrayOutputStream.write(payloadSize);
+            byteArrayOutputStream.write(checksum.getBytes());
+
             byteArrayOutputStream.write(payload);
             return byteArrayOutputStream.toByteArray();
         } catch (IOException e) {
@@ -50,7 +62,7 @@ public class Ppacket implements Serializable {
     }
     public String describe(){
         return "Ppacket{" +
-                "pheader=" + pheader +
+                "pheader=" + command +
                 ", payload=" + new String(payload) +
                 '}';
     }
@@ -82,10 +94,22 @@ public class Ppacket implements Serializable {
     public void setPayload(byte[] payload) {
         this.payload = payload;
     }
-    public boolean isHealthy(){
+
+    public long getCommand() {
+        return command;
+    }
+
+    public int getPayloadSize() {
+        return payloadSize;
+    }
+
+    public String getChecksum() {
+        return checksum;
+    }
+    /* public boolean isHealthy(){
         return SHA3.getSHA3(this.payload).substring(0,9).equals(pheader.getChecksum());
     }
     public Pheader getHeader() {
         return pheader;
-    }
+    }*/
 }

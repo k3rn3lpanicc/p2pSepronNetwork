@@ -26,7 +26,7 @@ public class Nodes implements Runnable {
         }
     }
     public void praseMessage(Ppacket message) throws IOException {
-        if (message.pheader.getCommand()==0){
+        if (message.getCommand()==0){
             System.out.println(message.describe());
             Main.sendMessageToOthers(message,this);
         }
@@ -34,6 +34,11 @@ public class Nodes implements Runnable {
 
     @Override
     public void run() {
+        try {
+            sendMessage(new Ppacket(0,"hi"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         while (nodeSocket.isConnected()) {
             try{
                 ObjectInputStream inputStream = new ObjectInputStream(nodeSocket.getInputStream());
