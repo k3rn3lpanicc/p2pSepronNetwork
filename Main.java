@@ -10,6 +10,7 @@ public class Main {
     public static final int MAX_CONNECTED_NODE=4;
     public static AppCommunicator appCommunicator;
     public static synchronized void sendMessageToAll(Ppacket message) throws IOException {
+        System.out.println("tst04");
         for (Nodes node : nodes) {
             System.out.println("tst03");
             node.sendMessage(message);
