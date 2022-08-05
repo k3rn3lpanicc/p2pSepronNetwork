@@ -32,6 +32,7 @@ public class ConnectedApps implements Runnable{
         out.println("app disconnected!");
     }
     public void praseCommand(String jsonString) throws JSONException, IOException {
+        out.println(jsonString);
         JSONObject json = new JSONObject(jsonString);
         String command =json.getString("command");
         out.println(command);
