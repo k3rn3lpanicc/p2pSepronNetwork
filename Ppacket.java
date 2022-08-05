@@ -1,4 +1,6 @@
 
+import org.json.JSONObject;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -59,6 +61,9 @@ public class Ppacket implements Serializable {
     }
     public String toString(){
         return Base64.getEncoder().encodeToString(toBytes());
+    }
+    public String toJson(){
+        return "{'command':'" + command + "', 'payload':'" + new String(payload) + "'}";
     }
     public String describe(){
         return "Ppacket{" +

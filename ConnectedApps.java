@@ -1,8 +1,6 @@
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,15 +13,32 @@ public class ConnectedApps implements Runnable{
     public ConnectedApps(Socket appSocket) {
         this.appSocket = appSocket;
     }
+    public void send(Ppacket message) throws IOException {
+        DataOutputStream outputStream = new DataOutputStream(appSocket.getOutputStream());
+        if (appSocket.isConnected()) {
+            outputStream.write(message.toJson().getBytes());
+        }
+    }
+    public void sendString(String message) throws IOException {
+        DataOutputStream outputStream = new DataOutputStream(appSocket.getOutputStream());
+        if (appSocket.isConnected()) {
+            outputStream.write(message.getBytes(StandardCharsets.UTF_8));
+        }
+    }
     public void disConnect(){
         Main.appCommunicator.connectedApps.remove(this);
 
         ///del
         out.println("app disconnected!");
     }
-    public void praseCommand(String jsonString) throws JSONException {
+    public void praseCommand(String jsonString) throws JSONException, IOException {
         JSONObject json = new JSONObject(jsonString);
-       out.println(json.getString("command"));
+        String command =json.getString("command");
+        out.println(command);
+        shouldGet= !command.equals("0") && (command.equals("1") || shouldGet);
+        if(command.equals("sendMessage")){
+            Main.sendMessageToAll(new Ppacket((long) Integer.parseInt(json.getString("pPacketCommand")), json.getString("pPacketPayLoad")));
+        }
     }
     @Override
     public void run() {
