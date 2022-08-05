@@ -31,7 +31,7 @@ public class Main {
             appCommunicator = new AppCommunicator();
             new Thread(appCommunicator).start();
             ServerSocket serverSocket = new ServerSocket(6009);
-           //sendConnect("185.110.191.125");
+           sendConnect("185.110.191.125");
             //sendMessageToAll(new Ppacket(0,"hi"));
             while (true) {
                 Socket client;
