@@ -36,8 +36,10 @@ public class ConnectedApps implements Runnable{
         JSONObject json = new JSONObject(jsonString);
         String command =json.getString("command");
         out.println(command);
+        out.println("tst01");
         shouldGet= !command.equals("0") && (command.equals("1") || shouldGet);
         if(command.equals("sendMessage")){
+            out.println("tst02");
             Main.sendMessageToAll(new Ppacket((long) Integer.parseInt(json.getString("pPacketCommand")), json.getString("pPacketPayLoad")));
         }
     }
