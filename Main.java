@@ -11,6 +11,7 @@ public class Main {
     public static AppCommunicator appCommunicator;
     public static synchronized void sendMessageToAll(Ppacket message) throws IOException {
         for (Nodes node : nodes) {
+            System.out.println("tst03");
             node.sendMessage(message);
         }
     }
