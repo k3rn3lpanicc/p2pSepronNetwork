@@ -26,6 +26,7 @@ public class Nodes implements Runnable {
         }
     }
     public void praseMessage(Ppacket message) throws IOException {
+        System.out.println("tst06");
         if (message.getCommand()==0){
             System.out.println(message.describe());
             Sender.sendMessageToOthers(message,this);
