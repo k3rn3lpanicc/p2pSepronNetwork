@@ -5,14 +5,18 @@ import java.net.Socket;
 
 public class Nodes implements Runnable {
     private Socket nodeSocket;
-    public Nodes(Socket nodeSocket) {
+    public Nodes(Socket nodeSocket) throws IOException {
         this.nodeSocket = nodeSocket;
+        outputStream = new ObjectOutputStream(nodeSocket.getOutputStream());
+        inputStream =  new ObjectInputStream(nodeSocket.getInputStream());
         System.out.println("connected to "+nodeSocket.getRemoteSocketAddress().toString());
     }
+    ObjectOutputStream outputStream;
+    ObjectInputStream inputStream;
     public void sendMessage(Ppacket message) throws IOException {
-        ObjectOutputStream outputStream = new ObjectOutputStream(nodeSocket.getOutputStream());
         if (nodeSocket.isConnected()) {
             outputStream.writeObject(message);
+            System.out.println("tst07");
         }
     }
     public void disConnect(){
@@ -47,7 +51,6 @@ public class Nodes implements Runnable {
         }*/
         while (nodeSocket.isConnected()) {
             try{
-                ObjectInputStream inputStream = new ObjectInputStream(nodeSocket.getInputStream());
                 Ppacket ppacket = (Ppacket) inputStream.readObject();
                 praseMessage(ppacket);
             }

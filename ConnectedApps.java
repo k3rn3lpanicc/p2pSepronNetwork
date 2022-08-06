@@ -25,7 +25,7 @@ public class ConnectedApps implements Runnable{
             outputStream.write(message.getBytes(StandardCharsets.UTF_8));
         }
     }
-    public void disConnect(){
+    public void disConnect() throws InterruptedException {
         Main.appCommunicator.connectedApps.remove(this);
 
         ///del
@@ -39,10 +39,13 @@ public class ConnectedApps implements Runnable{
         out.println("tst01");
         shouldGet= !command.equals("0") && (command.equals("1") || shouldGet);
         if(command.equals("sendMessage")){
+            long pPacketId = (json.getInt("pPacketCommand"));
+            String pPacketPayLoad = json.getString("pPacketPayLoad");
             out.println("tst02");
             for (Nodes node : Main.nodes) {
                 System.out.println("tst03");
-                node.sendMessage(new Ppacket((long) Integer.parseInt(json.getString("pPacketCommand")), json.getString("pPacketPayLoad")));
+                out.println("tst05"+ pPacketPayLoad+" "+pPacketId);
+                node.sendMessage(new Ppacket(pPacketId,pPacketPayLoad));
            // Sender.sendMessageToAll(new Ppacket((long) Integer.parseInt(json.getString("pPacketCommand")), json.getString("pPacketPayLoad")));
         }
     }}
@@ -77,7 +80,11 @@ public class ConnectedApps implements Runnable{
                     }
                 }
             }catch (Exception e){
-                disConnect();
+                try {
+                    disConnect();
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
                 break;
             }
         }
