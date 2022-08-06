@@ -8,7 +8,7 @@ public class Nodes implements Runnable {
     public Nodes(Socket nodeSocket) throws IOException {
         this.nodeSocket = nodeSocket;
         outputStream = new ObjectOutputStream(nodeSocket.getOutputStream());
-        inputStream =  new ObjectInputStream(nodeSocket.getInputStream());
+
         System.out.println("connected to "+nodeSocket.getRemoteSocketAddress().toString());
     }
     ObjectOutputStream outputStream;
@@ -49,6 +49,11 @@ public class Nodes implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }*/
+        try {
+            inputStream =  new ObjectInputStream(nodeSocket.getInputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         while (nodeSocket.isConnected()) {
             try{
                 Ppacket ppacket = (Ppacket) inputStream.readObject();
