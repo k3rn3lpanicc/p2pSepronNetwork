@@ -13,7 +13,11 @@ public class Sender {
         System.out.println("tst04");
         for (Nodes node : Main.nodes) {
             System.out.println("tst03");
-            node.sendMessage(message);
+            //node.sendMessage(message);
+            if (node.nodeSocket.isConnected()) {
+                node.outputStream.writeObject(message);
+                System.out.println("tst07");
+            }
         }
     }
     public static synchronized void sendConnect(String ip) throws IOException {

@@ -4,7 +4,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class Nodes implements Runnable {
-    private Socket nodeSocket;
+     Socket nodeSocket;
     public Nodes(Socket nodeSocket) throws IOException {
         this.nodeSocket = nodeSocket;
         outputStream = new ObjectOutputStream(nodeSocket.getOutputStream());
