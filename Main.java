@@ -15,8 +15,8 @@ public class Main {
             appCommunicator = new AppCommunicator();
             new Thread(appCommunicator).start();
             ServerSocket serverSocket = new ServerSocket(6009);
-          //Sender.sendConnect("185.110.189.18");
-          //Sender.sendMessageToAll(new Ppacket(0,"hi"));
+          Sender.sendConnect("185.110.189.18");
+        //  Sender.sendMessageToAll(new Ppacket(0,"hi"));
             while (true) {
                 Socket client;
                 client = serverSocket.accept();
