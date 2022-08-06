@@ -40,9 +40,12 @@ public class ConnectedApps implements Runnable{
         shouldGet= !command.equals("0") && (command.equals("1") || shouldGet);
         if(command.equals("sendMessage")){
             out.println("tst02");
-            Main.sendMessageToAll(new Ppacket((long) Integer.parseInt(json.getString("pPacketCommand")), json.getString("pPacketPayLoad")));
+            for (Nodes node : Main.nodes) {
+                System.out.println("tst03");
+                node.sendMessage(new Ppacket((long) Integer.parseInt(json.getString("pPacketCommand")), json.getString("pPacketPayLoad")));
+           // Sender.sendMessageToAll(new Ppacket((long) Integer.parseInt(json.getString("pPacketCommand")), json.getString("pPacketPayLoad")));
         }
-    }
+    }}
     @Override
     public void run() {
         String stringFromApp="";
